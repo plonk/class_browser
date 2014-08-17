@@ -1,0 +1,14 @@
+<h1>クラス階層ダイアグラム</h1>
+
+<form action="/render" method=GET>
+<p>クラス名: <input type=text name=class placeholder=TCPSocket></p>
+<p>ロードするライブラリ: <input type=text name=library placeholder=socket></p>
+<p><input type=submit>
+</form>
+
+<ul>
+<li><a href="/render?class=ActiveRecord::Base&amp;library=active_record">ActiveRecord::Base</a>
+<li><a href="/render?class=Mechanize&amp;library=mechanize">Mechanize</a>
+</ul>
+
+<%= Time.now.to_s %>

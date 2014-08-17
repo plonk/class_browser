@@ -1,0 +1,25 @@
+<%
+
+if params['class'] == ""
+  klass = 'String'
+else
+  klass = params['class']
+end
+%>
+
+<h1><%= klass %></h1>
+
+<%
+
+if params['library']!= ""
+  libopt = "-r#{params['library']}"
+else
+  libopt = ""
+end
+
+STDERR.puts("ruby #{libopt} hierarchy.rb #{klass} | dot -Tpng /dev/stdin > public/result/out.png")
+system("ruby #{libopt} hierarchy.rb #{klass} | dot -Tpng /dev/stdin > public/result/out.png")
+
+%>
+
+<center><img src="result/out.png"></center>
