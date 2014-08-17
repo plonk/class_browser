@@ -12,6 +12,7 @@ end
 <title><%= klass %></title>
 </head>
 <body>
+<p><a href="/">新しい検索</a></p>
 <h1><%= klass %></h1>
 
 <%=
@@ -21,8 +22,9 @@ if params['library']!= ""
 else
   libopt = ""
 end
+svg = `ruby #{libopt} hierarchy.rb #{klass} | dot -Tsvg /dev/stdin`
 
-`ruby #{libopt} hierarchy.rb #{klass} | dot -Tsvg /dev/stdin`.each_line.drop(3).join
+postprocess_svg(svg, params['library'])
 
 %>
 

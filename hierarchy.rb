@@ -1,6 +1,8 @@
 # Dumps the ancestors of a class in the Graphviz format.
 # Example: ruby -rsocket hierarchy.rb TCPSocket | dot -Tpng /dev/stdin > out.png
 
+require 'active_support/core_ext'
+
 def valid_class? name
   return false if name.empty?
 
@@ -28,6 +30,8 @@ end
 rels = klass.ancestors
 klasses, mods = rels.partition {|m| m.is_a? Class }
 
+direct_descendants = klass.descendants.select { |k| k.superclass == klass }
+
 puts "digraph { {"
 
 # depict modules as boxes
@@ -36,6 +40,10 @@ mods.each do |m|
 end
 
 puts "}"
+
+direct_descendants.each do |k|
+  puts "\"#{k}\"->\"#{klass}\""
+end
 
 klasses.each do |k|
   puts "\"#{k}\"->\"#{k.superclass}\"" if k.superclass
