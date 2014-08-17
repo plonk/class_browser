@@ -1,14 +1,29 @@
+<!DOCTYPE html>
+<head>
+<title>クラス階層ダイアグラム</title>
+<style>
+th.legend { white-space: nowrap; font-weight: normal; text-align: left }
+</style>
+
+</head>
 <h1>クラス階層ダイアグラム</h1>
 
-<form action="/render" method=GET>
-<p>クラス名: <input type=text name=class placeholder=TCPSocket></p>
-<p>ロードするライブラリ: <input type=text name=library placeholder=socket></p>
-<p><input type=submit>
+<form style="width: 20em" action="/render" method=GET>
+<table>
+<tr><th class=legend>クラス名:</th><td><input type=text name=class placeholder=TCPSocket></td></tr>
+<tr><th class=legend>ロードするライブラリ:</th><td><input type=text name=library placeholder=socket></td></tr>
+<tr><td colspan=2 style="text-align: right"><input type=submit value="送信"></td></tr>
+</table>
 </form>
 
+<h2>例</h2>
 <ul>
 <li><a href="/render?class=ActiveRecord::Base&amp;library=active_record">ActiveRecord::Base</a>
 <li><a href="/render?class=Mechanize&amp;library=mechanize">Mechanize</a>
 </ul>
+<hr>
 
 <%= Time.now.to_s %>
+
+</body>
+</html>

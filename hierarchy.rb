@@ -4,7 +4,7 @@
 def valid_class? name
   return false if name.empty?
 
-  name.split(/::/).reduce(Object) { |a,b| a.const_get b }
+  get_class name
   true
 rescue NameError
   false

@@ -1,5 +1,6 @@
+<!DOCTYPE html>
+<!-- -->
 <%
-
 if params['class'] == ""
   klass = 'String'
 else
@@ -7,9 +8,13 @@ else
 end
 %>
 
+<head>
+<title><%= klass %></title>
+</head>
+<body>
 <h1><%= klass %></h1>
 
-<%
+<%=
 
 if params['library']!= ""
   libopt = "-r#{params['library']}"
@@ -17,9 +22,9 @@ else
   libopt = ""
 end
 
-STDERR.puts("ruby #{libopt} hierarchy.rb #{klass} | dot -Tpng /dev/stdin > public/result/out.png")
-system("ruby #{libopt} hierarchy.rb #{klass} | dot -Tpng /dev/stdin > public/result/out.png")
+`ruby #{libopt} hierarchy.rb #{klass} | dot -Tsvg /dev/stdin`.each_line.drop(3).join
 
 %>
 
-<center><img src="result/out.png"></center>
+</body>
+</html>
